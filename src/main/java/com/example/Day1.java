@@ -10,7 +10,8 @@ public class Day1 {
 
     public static void main(String[] args) {
         List<List<String>> depths = getDepths("depths.txt");
-        System.out.println("Final count: " + countDepths(depths));
+        System.out.println("Final Part A count: " + countDepths(depths));
+        System.out.println("Final Part B count: " + sumDepths(depths));
 
     }
 
@@ -40,6 +41,21 @@ public class Day1 {
             Integer y = i - 1;
             Integer depthX = Integer.parseInt(depths.get(x).get(0));
             Integer depthY = Integer.parseInt(depths.get(y).get(0));
+            if(depthX > depthY) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static Integer sumDepths(List<List<String>> depths) {
+        Integer count = 0;
+        for(int i = 3; i < depths.size(); i++) {
+            Integer x = i;
+            Integer y = i - 1;
+            Integer depthX = Integer.parseInt(depths.get(x).get(0)) + Integer.parseInt(depths.get(x-1).get(0)) + Integer.parseInt(depths.get(x-2).get(0));
+            Integer depthY = Integer.parseInt(depths.get(y).get(0)) + Integer.parseInt(depths.get(y-1).get(0)) + Integer.parseInt(depths.get(y-2).get(0));
             if(depthX > depthY) {
                 count++;
             }
