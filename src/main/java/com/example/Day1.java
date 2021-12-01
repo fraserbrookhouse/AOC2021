@@ -2,8 +2,6 @@ package com.example;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,14 +9,15 @@ import java.util.List;
 public class Day1 {
 
     public static void main(String[] args) {
-        System.out.println(getDepths());
+        List<List<String>> depths = getDepths("depths.txt");
+        System.out.println("Final count: " + countDepths(depths));
 
     }
 
 
 
-    public static List<List<String>> getDepths() {
-        String file = ClassLoader.getSystemResource("depths.txt").getFile();
+    public static List<List<String>> getDepths(String input) {
+        String file = ClassLoader.getSystemResource(input).getFile();
         List<List<String>> depths = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
@@ -32,6 +31,21 @@ public class Day1 {
             }
 
             return depths;
+    }
+
+    public static Integer countDepths(List<List<String>> depths) {
+        Integer count = 0;
+        for(int i = 1; i < depths.size(); i++) {
+            Integer x = i;
+            Integer y = i - 1;
+            Integer depthX = Integer.parseInt(depths.get(x).get(0));
+            Integer depthY = Integer.parseInt(depths.get(y).get(0));
+            if(depthY > depthX) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
 }
