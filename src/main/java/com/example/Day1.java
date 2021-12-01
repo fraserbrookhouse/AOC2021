@@ -2,12 +2,13 @@ package com.example;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Day1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         List<Integer> depths = getDepths("depths.txt");
         System.out.println("Final Part A count: " + countDepths(depths));
         System.out.println("Final Part B count: " + sumDepths(depths));
@@ -22,7 +23,7 @@ public class Day1 {
 
 
 
-    public static List<Integer> getDepths(String input) {
+    public static List<Integer> getDepths(String input) throws IOException {
         String file = ClassLoader.getSystemResource(input).getFile();
         List<Integer> depths = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -30,9 +31,6 @@ public class Day1 {
                 while((line = br.readLine()) != null) {
                     depths.add(Integer.parseInt(line));
                 }
-            }
-            catch(Exception e) {
-                e.printStackTrace();
             }
 
             return depths;
