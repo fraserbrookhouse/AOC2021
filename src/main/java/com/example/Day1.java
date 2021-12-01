@@ -40,7 +40,7 @@ public class Day1 {
             Integer y = i - 1;
             Integer depthX = Integer.parseInt(depths.get(x).get(0));
             Integer depthY = Integer.parseInt(depths.get(y).get(0));
-            if(depthY > depthX) {
+            if(depthX > depthY) {
                 count++;
             }
         }
