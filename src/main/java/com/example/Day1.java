@@ -13,6 +13,12 @@ public class Day1 {
         System.out.println("Final Part A count: " + countDepths(depths));
         System.out.println("Final Part B count: " + sumDepths(depths));
 
+        if (countDepths(depths) != 1583) {
+            throw new AssertionError();
+        }
+        if (sumDepths(depths) != 1627) {
+            throw new AssertionError();
+        }
     }
 
 
