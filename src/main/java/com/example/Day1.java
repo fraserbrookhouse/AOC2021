@@ -3,8 +3,11 @@ package com.example;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Day1 {
 
@@ -25,15 +28,9 @@ public class Day1 {
 
     public static List<Integer> getDepths(String input) throws IOException {
         String file = ClassLoader.getSystemResource(input).getFile();
-        List<Integer> depths = new ArrayList<>();
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                String line;
-                while((line = br.readLine()) != null) {
-                    depths.add(Integer.parseInt(line));
-                }
-            }
-
-            return depths;
+        return Files.lines(Paths.get(file))
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
     }
 
     public static int countDepths(List<Integer> depths) {
