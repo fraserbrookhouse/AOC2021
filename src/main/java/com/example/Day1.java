@@ -38,13 +38,13 @@ public class Day1 {
             return depths;
     }
 
-    public static Integer countDepths(List<Integer> depths) {
-        Integer count = 0;
+    public static int countDepths(List<Integer> depths) {
+        int count = 0;
         for(int i = 1; i < depths.size(); i++) {
-            Integer x = i;
-            Integer y = i - 1;
-            Integer depthX = depths.get(x);
-            Integer depthY = depths.get(y);
+            int x = i;
+            int y = i - 1;
+            int depthX = depths.get(x);
+            int depthY = depths.get(y);
             if(depthX > depthY) {
                 count++;
             }
@@ -53,13 +53,13 @@ public class Day1 {
         return count;
     }
 
-    public static Integer sumDepths(List<Integer> depths) {
-        Integer count = 0;
+    public static int sumDepths(List<Integer> depths) {
+        int count = 0;
         for(int i = 3; i < depths.size(); i++) {
-            Integer x = i;
-            Integer y = i - 1;
-            Integer depthX = depths.get(x) + depths.get(x-1) + depths.get(x-2);
-            Integer depthY = depths.get(y) + depths.get(y-1) + depths.get(y-2);
+            int x = i;
+            int y = i - 1;
+            int depthX = depths.get(x) + depths.get(x-1) + depths.get(x-2);
+            int depthY = depths.get(y) + depths.get(y-1) + depths.get(y-2);
             if(depthX > depthY) {
                 count++;
             }
