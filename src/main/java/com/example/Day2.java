@@ -10,8 +10,8 @@ public class Day2 {
 
     public static void main(String[] args) throws IOException {
         List<String> directions = getDirections("day2Input.txt");
-        System.out.println("Directions: " + directions);
-        System.out.println("Answer: "+getPosition(directions));
+        System.out.println("Part 1 answer: " + getPosition(directions, 1));
+        System.out.println("Part 2 answer: " + getPosition(directions, 2));
 
     }
 
@@ -21,22 +21,40 @@ public class Day2 {
                 .collect(Collectors.toList());
     }
 
-    public static Integer getPosition(List<String> directions) {
+    public static Integer getPosition(List<String> directions, Integer part) {
         int x = 0;
         int y = 0;
-        int multipliedLocations = 0;
-        for (String instructions : directions) {
-            String[] instruction = instructions.split(" ");
-            String direction = instruction[0];
-            int distance = Integer.parseInt(instruction[1]);
-
-            switch (direction) {
-                case "forward" -> x += distance;
-                case "down" -> y += distance;
-                case "up" -> y -= distance;
+        int a = 0;
+        int multipliedLocations;
+        if (part == 1) {
+            for (String instructions : directions) {
+                String[] instruction = instructions.split(" ");
+                String direction = instruction[0];
+                int distance = Integer.parseInt(instruction[1]);
+                switch (direction) {
+                    case "forward" -> x += distance;
+                    case "down" -> y += distance;
+                    case "up" -> y -= distance;
+                }
             }
-            multipliedLocations = x*y;
+        } else if (part == 2) {
+            for (String instructions : directions) {
+                String[] instruction = instructions.split(" ");
+                String direction = instruction[0];
+                int distance = Integer.parseInt(instruction[1]);
+                switch (direction) {
+                    case "forward": {
+                        x += distance;
+                        y += (a * distance);
+                    }
+                    case "down":
+                        a += distance;
+                    case "up":
+                        a -= distance;
+                }
+            }
         }
+        multipliedLocations = x * y;
         return multipliedLocations;
     }
 }
