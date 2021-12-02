@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Day2 {
 
     public static void main(String[] args) throws IOException {
-        List<String> directions = getDirections("day2Input.txt");
+        List<String> directions = getDirections("day2input.txt");
         System.out.println("Part 1 answer: " + getPosition(directions, 1));
         System.out.println("Part 2 answer: " + getPosition(directions, 2));
 
@@ -22,9 +22,9 @@ public class Day2 {
     }
 
     public static Integer getPosition(List<String> directions, Integer part) {
-        int x = 0;
-        int y = 0;
-        int a = 0;
+        int horizontalPos = 0;
+        int depth = 0;
+        int aim = 0;
         int multipliedLocations;
         if (part == 1) {
             for (String instructions : directions) {
@@ -32,9 +32,9 @@ public class Day2 {
                 String direction = instruction[0];
                 int distance = Integer.parseInt(instruction[1]);
                 switch (direction) {
-                    case "forward" -> x += distance;
-                    case "down" -> y += distance;
-                    case "up" -> y -= distance;
+                    case "forward" -> horizontalPos += distance;
+                    case "down" -> depth += distance;
+                    case "up" -> depth -= distance;
                 }
             }
         } else if (part == 2) {
@@ -43,18 +43,24 @@ public class Day2 {
                 String direction = instruction[0];
                 int distance = Integer.parseInt(instruction[1]);
                 switch (direction) {
-                    case "forward": {
-                        x += distance;
-                        y += (a * distance);
+                    case "forward" -> {
+                        horizontalPos += distance;
+                        depth += (aim * distance);
                     }
-                    case "down":
-                        a += distance;
-                    case "up":
-                        a -= distance;
+                    case "down" ->
+                        aim += distance;
+                    case "up" ->
+                        aim -= distance;
                 }
+                System.out.println("horizontalpos: " + horizontalPos);
+                System.out.println("depth: " + depth);
+                System.out.println("aim: " + aim);
             }
         }
-        multipliedLocations = x * y;
+        System.out.println("horizontalpos: " + horizontalPos);
+        System.out.println("depth: " + depth);
+        System.out.println("aim: " + aim);
+        multipliedLocations = horizontalPos * depth;
         return multipliedLocations;
     }
 }
